@@ -1,6 +1,6 @@
 const Tshirts = () => {
     return ( <div>
-        <h1>Tshirts</h1>
+        <img src={require('../../images/mens_tshirts.jpg')} width="100%" />
     </div> );
 }
  

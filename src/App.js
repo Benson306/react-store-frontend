@@ -1,10 +1,11 @@
+import Navigation from "./components/client/Navigation";
 import Tshirts from "./components/client/Tshirts";
 
 
 function App() {
   return (
     <div className="App">
-      <Tshirts />
+      <Navigation />
     </div>
   );
 }
