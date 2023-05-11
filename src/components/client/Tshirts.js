@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import tshirts  from '../../data/mens_outerwear.json';
+import tshirts  from '../../data/mens_tshirts.json';
 
 const Tshirts = () => {
 
@@ -13,13 +13,13 @@ const Tshirts = () => {
 
         <div className='flex flex-wrap'>
            { tshirts.map( tshirt => (
-            <Link to={"/preview"} className='w-1/2 md:w-2/6' key={tshirt.name} state={{ data: tshirt}}>
+            <Link to={"/preview"} className='w-1/2 md:w-2/6 p-3' key={tshirt.name} state={{ data: tshirt}}>
                 <div className='flex justify-center'>
                     <img src={require(`../../productImages/${tshirt.image}`)} width="310px" alt="" />
                 </div>
 
-                <div className='text-center text-bold'>{tshirt.title}</div>
-                <div className='text-center text-gray-700'>$ {tshirt.price}</div>
+                <div className='text-center text-bold text-base'>{tshirt.title}</div>
+                <div className='text-center text-gray-700 text-sm'>$ {tshirt.price}</div>
             </Link>
            )) 
            }
