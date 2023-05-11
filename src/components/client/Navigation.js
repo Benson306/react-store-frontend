@@ -1,11 +1,8 @@
-import { TabPanel } from '@mui/base';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Tab, Tabs, Box, Typography } from '@mui/material';
 import { useState } from 'react';
 import Hoodies from './Hoodies';
 import Tshirts from './Tshirts';
-
-
 
 const Navigation = () => {
 
@@ -31,7 +28,7 @@ const Navigation = () => {
         </div>
         <div className='flex justify-center mt-5 text-gray-800 text-bold'>
             <Tabs value={currentTabIndex} onChange={handleTabChange}>
-                <Tab label="Tshirts" />
+                <Tab label="T-shirts" />
                 <Tab label="Hoodies" />
             </Tabs>
         </div>
