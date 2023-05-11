@@ -4,6 +4,7 @@ import Hoodies from './Hoodies';
 import Tshirts from './Tshirts';
 
 const Navigation = () => {
+    const currentYear = new Date().getFullYear();
 
     const [currentTabIndex, setCurrentTabIndex] = useState(0);
  
@@ -35,6 +36,10 @@ const Navigation = () => {
           </Typography>
         </Box>
         )}
+
+        <div className="bottom-0 text-center p-5">
+            © {currentYear} Copyright Iko Nini
+        </div>
     </div> );
 }
  
