@@ -1,4 +1,3 @@
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Tab, Tabs, Box, Typography } from '@mui/material';
 import { useState } from 'react';
 import Hoodies from './Hoodies';
@@ -13,19 +12,8 @@ const Navigation = () => {
         setCurrentTabIndex(tabIndex);
     };
 
-    return ( <div className="mt-6">
-        <div className="flex justify-between mx-20">
-            <div className='pl-10'>
-
-            </div>
-
-            <div className='font-sans text-3xl text-center tracking-widest font-bold'>SHOP</div>
-
-            <div className='flex align-middle'>
-                <ShoppingCartIcon fontSize={'medium'}  />
-            </div>
-
-        </div>
+    return ( <div className="">
+        
         <div className='flex justify-center mt-5 text-gray-800 text-bold'>
             <Tabs value={currentTabIndex} onChange={handleTabChange}>
                 <Tab label="T-shirts" />

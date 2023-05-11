@@ -1,10 +1,7 @@
+import { Link } from 'react-router-dom';
 import tshirts  from '../../data/mens_outerwear.json';
 
 const Tshirts = () => {
-
-    const handleClick = () =>{
-        console.log("Next")
-    }
 
     return ( <div>
         <div className='invisible lg:visible h-0 lg:h-auto'>
@@ -16,14 +13,14 @@ const Tshirts = () => {
 
         <div className='flex flex-wrap'>
            { tshirts.map( tshirt => (
-            <div className='w-1/2 md:w-2/6' key={tshirt.name} onClick={handleClick}>
+            <Link to={"/preview"} className='w-1/2 md:w-2/6' key={tshirt.name} state={{ data: tshirt}}>
                 <div className='flex justify-center'>
                     <img src={require(`../../productImages/${tshirt.image}`)} width="310px" alt="" />
                 </div>
 
                 <div className='text-center text-bold'>{tshirt.title}</div>
                 <div className='text-center text-gray-700'>$ {tshirt.price}</div>
-            </div>
+            </Link>
            )) 
            }
             
