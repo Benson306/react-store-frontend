@@ -21,7 +21,7 @@ const Navigation = () => {
 
             <div className='font-sans text-3xl text-center tracking-widest font-bold'>SHOP</div>
 
-            <div className=''>
+            <div className='flex align-middle'>
                 <ShoppingCartIcon fontSize={'medium'}  />
             </div>
 
