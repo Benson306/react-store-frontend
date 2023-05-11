@@ -1,19 +1,31 @@
 import { useLocation } from "react-router-dom";
+import he from 'he';
+import { useEffect } from "react";
 
 const Preview = () => {
 
     const location = useLocation();
 
-    const data = location.state.data
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
 
-    return ( <div className="flex mt-28">
-        <div className="w-1/2 flex justify-center">
+    const data = location.state.data;
+
+    const html = he.decode(data.description);
+
+
+    return ( <div className="block lg:flex mt-10 lg:mt-28">
+        <div className="invisible lg:visible h-0 lg:h-auto lg:w-1/2 flex justify-center">
             <img src={require(`../../productImages/${data.largeImage}`)} />
         </div>
+        <div className="visible lg:invisible w-auto lg:w-0 flex justify-center">
+            <img src={require(`../../productImages/${data.image}`)} width="200px" />
+        </div>
 
-        <div className="w-1/2 pr-52">
-           <div className="font-serif text-gray-800 text-bold text-2xl tracking-wider pb-3">{data.title}</div> 
-           <div className="text-gray-500 pb-10">Ksh {data.price}</div>
+        <div className="w-full lg:w-1/2 lg:pr-52 p-10">
+           <div className="font-serif text-gray-800 text-bold lg:text-2xl tracking-wider pb-1 lg:pb-3">{data.title}</div> 
+           <div className="text-gray-500 pb-4 lg:pb-10">Ksh {data.price}</div>
            <hr />
            <form>
 
@@ -45,12 +57,16 @@ const Preview = () => {
 
            <div className="text-bold py-8">Description</div>
 
-           <div>{ data.description }</div>
+           <div className="break-words" dangerouslySetInnerHTML={{ __html: html}} />
 
-           <div className="w-52 mt-10 flex justify-center p-1 border-2 border-black">
+           <div className="collapse lg:visible w-52 mt-10 flex justify-center p-1 border-2 border-black">
             ADD TO CART
            </div>
 
+        
+        </div>
+        <div className="visible lg:collapse fixed bottom-0 bg-blue-950 text-white text-center w-full lg:w-0 p-4 text-bold tracking-wider font-serif">
+            ADD TO CART
         </div>
         
     </div> );
