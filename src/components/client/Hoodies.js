@@ -12,7 +12,7 @@ const Hoodies = () => {
 
         <div className='flex flex-wrap'>
            { hoodies.map( hoodie => (
-            <Link to={"/preview"} className='w-1/2 md:w-2/6' key={hoodie.name} state={{ data: hoodie}}>
+            <Link to={"/preview"} className='w-1/2 md:w-2/6 p-3' key={hoodie.name} state={{ data: hoodie}}>
                 <div className='flex justify-center'>
                     <img src={require(`../../productImages/${hoodie.image}`)} width="310px" alt="" />
                 </div>

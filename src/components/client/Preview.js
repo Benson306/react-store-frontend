@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import he from 'he';
 import { useEffect } from "react";
+import useCart from "../../utils/CartContext";
 
 const Preview = () => {
 
@@ -13,6 +14,13 @@ const Preview = () => {
     const data = location.state.data;
 
     const html = he.decode(data.description);
+
+    const { addToCart } = useCart();
+
+    const handleAddToCart = ()=>{
+        console.log('clicked')
+        addToCart(data);
+    }
 
 
     return ( <div className="block lg:flex mt-10 lg:mt-28">
@@ -60,13 +68,13 @@ const Preview = () => {
 
            <div className="break-words" dangerouslySetInnerHTML={{ __html: html}} />
 
-           <div className="collapse lg:visible w-52 mt-10 flex justify-center p-1 border-2 border-black">
+           <div className="collapse lg:visible w-52 mt-10 flex justify-center p-1 border-2 border-black" onClick={() => handleAddToCart()}>
             ADD TO CART
            </div>
 
         
         </div>
-        <div className="visible lg:collapse fixed bottom-0 bg-blue-950 text-white text-center w-full lg:w-0 p-4 text-bold tracking-wider font-serif">
+        <div className="visible lg:collapse fixed bottom-0 bg-blue-950 text-white text-center w-full lg:w-0 p-4 text-bold tracking-wider font-serif" onClick={() => handleAddToCart()}>
             ADD TO CART
         </div>
         
