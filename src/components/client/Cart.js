@@ -1,6 +1,7 @@
 import useCart from "../../utils/CartContext";
 import ClearIcon from '@mui/icons-material/Clear';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Link } from "react-router-dom";
 
 const Cart = () => {
 
@@ -57,16 +58,16 @@ const Cart = () => {
                     
             </div>
             <div className="flex justify-center px-10 ml-5">
-                <div className="collapse lg:visible w-48 flex justify-center p-1 border-2 border-black" >
+                <Link to={'/checkout'}><div className="collapse lg:visible w-48 flex justify-center p-1 border-2 border-black" >
                         CHECKOUT
-                </div>
+                </div></Link>
             </div>
             
             
 
-            <div className="visible lg:collapse fixed bottom-0 bg-blue-950 text-white text-center w-full lg:w-0 p-4 text-bold tracking-wider font-serif" >
+            <Link to={'/checkout'}><div className="visible lg:collapse fixed bottom-0 bg-blue-950 text-white text-center w-full lg:w-0 p-4 text-bold tracking-wider font-serif" >
                 CHECKOUT
-            </div>
+            </div></Link>
         </div> 
         
         : 
