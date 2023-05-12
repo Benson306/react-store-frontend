@@ -37,6 +37,21 @@ export const CartProvider = ({ children }) => {
         }
     }
 
+    const removeFromCart = (product) =>{
+        const updatedCart = state.products.filter(currentProduct => 
+            currentProduct.name !== product.name
+        )
+
+        updatedPrice(updatedCart);
+
+        dispatch({
+            type:"REMOVE_FROM_CART",
+            payload: {
+                products: updatedCart
+            }
+        })
+    }
+
 
     const updatedPrice = (products) =>{
         let total = 0;
@@ -55,7 +70,8 @@ export const CartProvider = ({ children }) => {
         total: state.total,
         products: state.products,
         deliveryLocation: state.deliveryLocation,
-        addToCart
+        addToCart,
+        removeFromCart
     }
 
     return <CartContext.Provider value={value}>
