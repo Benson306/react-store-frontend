@@ -2,6 +2,9 @@ import { useLocation } from "react-router-dom";
 import he from 'he';
 import { useEffect, useState } from "react";
 import useCart from "../../utils/CartContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Preview = () => {
 
@@ -22,10 +25,12 @@ const Preview = () => {
 
     const handleAddToCart = ()=>{
         addToCart({ ...data, size, quantity: Number(quantity) });
+        toast("Product Has Been Added To Cart")
     }
 
 
     return ( <div className="block lg:flex mt-10 lg:mt-10">
+        <ToastContainer />
         <div className="invisible lg:visible h-0 lg:h-auto lg:w-1/2 flex justify-center">
             <img src={require(`../../productImages/${data.largeImage}`)} />
         </div>
