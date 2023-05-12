@@ -19,6 +19,9 @@ const Checkout = () => {
 
     const [deliveryCost, setDeliveryCost] = useState(260);
 
+    const [link, setLink] = useState('');
+    const [showIframe, setShowIframe] = useState(false);
+
     useEffect(()=>{
         const town = towns.filter( town => town.name === location)
 
@@ -26,12 +29,48 @@ const Checkout = () => {
     }, [location])
 
     const handleSubmit = (data) =>{
-        let newData = {...data, location, deliveryCost};
-        
+        let newData = {...data, products, total, location, deliveryCost};
+
+        fetch('http://localhost:5000/Checkout',{
+            method: 'POST',
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify(newData)
+        })
+        .then((res)=>{
+            return res.json()
+        })
+        .then((res)=>{
+            console.log(res);
+            setLink(res.redirect_url);
+
+            setShowIframe(true);
+        })
+        .catch( err=>{
+            console.log(err);
+        })
+
+
     }
 
 
-    return ( <div className="mt-3 lg:mt-20">
+    return ( <div className="mt-3 lg:mt-20 ">
+            <div className="flex justify-center mb-10 text-xl">Checkout</div>
+    { showIframe ? (
+        <div className="flex justify-center items-center">
+        <iframe
+          src={link}
+          title="Secure Checkout"
+          width="80%"
+          height="500px"
+          frameBorder="0"
+        />
+        </div>
+      )
+    
+    :
+    
     <Formik
             initialValues={{email:'', phoneNumber:''}}
             validationSchema={checkoutSchema}
@@ -42,7 +81,7 @@ const Checkout = () => {
             >
         {(props)=>(
     <Form>
-        <div className="flex justify-center mb-10 text-xl">Checkout</div>
+        
         <div className="block lg:flex mx-5 lg:mx-10">                
             <div className="block w-full lg:w-1/2">
                 <div className="font-bold mb-5">Account Information</div>
@@ -240,7 +279,9 @@ const Checkout = () => {
         </Form>
     )}
     </Formik>
-    </div> );
+    }
+    </div>
+    );
 }
  
 export default Checkout;
