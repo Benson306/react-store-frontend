@@ -72,7 +72,6 @@ export const CartProvider = ({ children }) => {
     const value = {
         total: state.total,
         products: state.products,
-        deliveryLocation: state.deliveryLocation,
         addToCart,
         removeFromCart
     }

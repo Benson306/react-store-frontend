@@ -1,6 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useCart from "../../utils/CartContext";
 import towns from '../../data/towns.json';
+import * as yup from 'yup'
+import { Field, Form, Formik } from 'formik'
+
+const myRegex = /^07\d{8}$/;
+
+const checkoutSchema = yup.object({
+    email: yup.string().email('Invalid Email').required().min(3),
+    phoneNumber: yup.string().matches(myRegex, "Phone number is not valid").required()
+})
 
 const Checkout = () => {
 
@@ -10,31 +19,46 @@ const Checkout = () => {
 
     const [deliveryCost, setDeliveryCost] = useState(260);
 
-    const handleDeliveryChange = () =>{
+    useEffect(()=>{
         const town = towns.filter( town => town.name === location)
 
-        console.log(town)
-
         setDeliveryCost(town[0].price);
+    }, [location])
+
+    const handleSubmit = (data) =>{
+        let newData = {...data, location, deliveryCost};
+        
     }
 
-    return ( <div className="mt-3 lg:mt-20">
-        <div className="flex justify-center mb-10 text-xl">Checkout</div>
 
-        <div className="block lg:flex mx-5 lg:mx-10">
+    return ( <div className="mt-3 lg:mt-20">
+    <Formik
+            initialValues={{email:'', phoneNumber:''}}
+            validationSchema={checkoutSchema}
+            onSubmit={(values)=>{
+                    handleSubmit(values);
+                }
+            }
+            >
+        {(props)=>(
+    <Form>
+        <div className="flex justify-center mb-10 text-xl">Checkout</div>
+        <div className="block lg:flex mx-5 lg:mx-10">                
             <div className="block w-full lg:w-1/2">
                 <div className="font-bold mb-5">Account Information</div>
                 <div>
-                <input type="email" placeholder="Email" className="border-b-2 p-3 mb-5 w-full lg:w-3/4" required/>
+                <Field type="email" name="email" value={props.values.email} placeholder="Email"  className="border-b-2 p-3 mb-5 w-full lg:w-3/4" required/>
                 </div>
+                <div className="p-1 capitalize text-red-900">{props.touched.email && props.errors.email}</div>
                 <div>
-                <input type="text" placeholder="Phone Number" className="border-b-2 p-3 mb-5 w-full lg:w-3/4" required/>
+                <Field type="text" name="phoneNumber" value={props.values.phoneNumber} placeholder="Phone Number" className="border-b-2 p-3 mb-5 w-full lg:w-3/4" required/>
                 </div>
+                <div className="p-1 capitalize text-red-900">{props.touched.phoneNumber && props.errors.phoneNumber}</div>
             </div>
 
             <div >
                 <div className="font-bold mb-5">Select Delivery Location</div>
-                <select className="w-full p-1 lg:p-3 bg-white mb-4 border-b-2" onChange={(e)=>{  handleDeliveryChange(); setLocation(e.target.value); }}>
+                <select className="w-full p-1 lg:p-3 bg-white mb-4 border-b-2" onChange={(e)=>{ setLocation(e.target.value); }}>
                             <option value="Nairobi">Nairobi - Ksh260.00</option>
                             <option value="Nairobi Area">Nairobi Area - Ksh250.00</option>
                             <option value="Athi River">Athi River - Ksh280.00</option>
@@ -198,22 +222,24 @@ const Checkout = () => {
 
                 <div className="flex mt-5 text-xs lg:text-base">
                     <div className="w-48 lg:w-80 font-bold">Total:</div>
-                    <div className="ml-12 lg:ml-0">KES. {total + 250}</div>
+                    <div className="ml-12 lg:ml-0">KES. {total + deliveryCost}</div>
                 </div>
 
-                <div className="collapse lg:visible w-28 flex justify-center p-1 border-2 border-black mt-10" >
+                <button className="collapse lg:visible w-28 flex justify-center p-1 border-2 border-black mt-10" type="submit">
                     PAY
-                </div>
+                </button>
 
 
             </div>
-
         </div>
 
 
-        <div className="visible lg:collapse fixed bottom-0 bg-blue-950 text-white text-center w-full lg:w-0 p-4 text-bold tracking-wider font-serif" >
-            PAY
-        </div>
+        <button type="submit" className="visible lg:collapse fixed bottom-0 bg-blue-950 text-white text-center w-full lg:w-0 p-4 text-bold tracking-wider font-serif">
+            PAY 
+        </button>
+        </Form>
+    )}
+    </Formik>
     </div> );
 }
  
