@@ -3,6 +3,7 @@ import useCart from "../../utils/CartContext";
 import towns from '../../data/towns.json';
 import * as yup from 'yup'
 import { Field, Form, Formik } from 'formik'
+import SyncLoader from "react-spinners/SyncLoader";
 
 const myRegex = /^07\d{8}$/;
 
@@ -20,7 +21,10 @@ const Checkout = () => {
     const [deliveryCost, setDeliveryCost] = useState(260);
 
     const [link, setLink] = useState('');
+
     const [showIframe, setShowIframe] = useState(false);
+
+    const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
         const town = towns.filter( town => town.name === location)
@@ -29,6 +33,7 @@ const Checkout = () => {
     }, [location])
 
     const handleSubmit = (data) =>{
+        setLoading(true);
         let newData = {...data, products, total, location, deliveryCost};
 
         fetch('http://localhost:5000/Checkout',{
@@ -42,8 +47,9 @@ const Checkout = () => {
             return res.json()
         })
         .then((res)=>{
-            console.log(res);
             setLink(res.redirect_url);
+
+            setLoading(false);
 
             setShowIframe(true);
         })
@@ -57,6 +63,7 @@ const Checkout = () => {
 
     return ( <div className="mt-3 lg:mt-20 ">
             <div className="flex justify-center mb-10 text-xl">Checkout</div>
+            
     { showIframe ? (
         <div className="flex justify-center items-center">
         <iframe
@@ -273,8 +280,9 @@ const Checkout = () => {
         </div>
 
 
-        <button type="submit" className="visible lg:collapse fixed bottom-0 bg-blue-950 text-white text-center w-full lg:w-0 p-4 text-bold tracking-wider font-serif">
-            PAY 
+        <button type="submit" className="visible lg:collapse fixed bottom-0 bg-blue-950 text-white text-center w-full lg:w-0 p-4 text-bold tracking-wider font-serif flex justify-center">
+           { loading &&  <div><SyncLoader size={6} color={"#fff"}/></div> }
+           {!loading && <div>PAY</div> }
         </button>
         </Form>
     )}
