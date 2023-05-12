@@ -15,16 +15,19 @@ export const CartProvider = ({ children }) => {
     },[])
 
     const addToCart = (product) => {
+        console.log(product)
         const itemIndex = state.products.findIndex(item => item.name === product.name);
 
-        if(itemIndex >= 0){
-            state.products[itemIndex].quantity += 1;
+        if(itemIndex >= 0){ //If it exists in state
+            state.products[itemIndex].quantity += Number(product.quantity);
+
+            state.products[itemIndex].size = product.size;
 
             updatedPrice(state.products);
         }else{
-            let newProduct = {...product, quantity: 1}
+            //let newProduct = {...product, quantity: product.quantity}
 
-            const updatedCart = state.products.concat(newProduct);
+            const updatedCart = state.products.concat(product);
 
             updatedPrice(updatedCart)
 
@@ -56,7 +59,7 @@ export const CartProvider = ({ children }) => {
     const updatedPrice = (products) =>{
         let total = 0;
 
-        products.forEach(product => total += (Number(product.price) * product.quantity))
+        products.forEach(product => total += (product.price * product.quantity))
 
         dispatch({
             type: "UPDATE_TOTAL",
