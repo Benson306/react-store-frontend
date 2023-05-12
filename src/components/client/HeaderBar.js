@@ -12,7 +12,7 @@ const HeaderBar = () => {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        if(location.pathname === '/preview' || location.pathname === '/cart'){
+        if(location.pathname === '/preview' || location.pathname === '/cart' || location.pathname === '/checkout'){
             setShow(true);
         }else{
             setShow(false)
