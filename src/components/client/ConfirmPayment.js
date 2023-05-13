@@ -9,13 +9,16 @@ const ConfirmPayment = () => {
 
     useEffect(()=>{
         fetch('/api/ConfirmPayment/645f19141f47848c6f199e13')
-        .then(data => {
-            console.log(data);
-            if(data === "Completed"){
+        .then(res => {
+            return res.json();
+        })
+        .then(res => {
+            console.log(res);
+            if(res === "Completed"){
                 setSuccess(true);
-            }else if(data === "Failed"){
+            }else if(res === "Failed"){
                 setSuccess(false);
-            }else if(data === "Pending"){
+            }else if(res === "Pending"){
                 setSuccess(false);
             }
 

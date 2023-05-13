@@ -48,12 +48,11 @@ const Checkout = () => {
             return res.json()
         })
         .then((res)=>{
-            console.log(res)
             setLink(res.redirect_url);
 
             setLoading(false);
 
-            //setShowIframe(true);
+            setShowIframe(true);
         })
         .catch( err=>{
             console.log(err);
