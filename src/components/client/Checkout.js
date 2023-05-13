@@ -44,6 +44,7 @@ const Checkout = () => {
             body: JSON.stringify(newData)
         })
         .then((res)=>{
+            console.log(res)
             return res.json()
         })
         .then((res)=>{
