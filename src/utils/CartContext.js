@@ -15,7 +15,6 @@ export const CartProvider = ({ children }) => {
     },[])
 
     const addToCart = (product) => {
-        console.log(product)
         const itemIndex = state.products.findIndex(item => item.name === product.name);
 
         if(itemIndex >= 0){ //If it exists in state
