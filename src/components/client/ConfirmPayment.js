@@ -1,19 +1,24 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import FailedTransaction from "./FailedTransaction";
 import SuccessTransaction from "./SuccessTransaction";
 
 const ConfirmPayment = () => {
 
+    const location = useLocation();
+
+    console.log(location);
+
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
-        fetch('/api/ConfirmPayment/645f19141f47848c6f199e19')
+        fetch('/api/ConfirmPayment/645f19141f47848c6f199e13')
         .then(res => {
             return res.json();
         })
         .then(res => {
-            console.log(res);
+
             if(res === "Completed"){
                 setSuccess(true);
             }else if(res === "Failed"){
