@@ -34,7 +34,7 @@ const ConfirmPayment = () => {
             console.log(err);
         })
 
-    })
+    },[])
     return ( <div>
         {
             loading && <div class="flex items-center justify-center h-screen">
