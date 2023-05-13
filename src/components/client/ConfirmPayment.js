@@ -8,7 +8,7 @@ const ConfirmPayment = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
-        fetch('/api/ConfirmPayment/')
+        fetch('/api/ConfirmPayment/645f19141f47848c6f199e13')
         .then((data)=>{
             return data.json();
         })
