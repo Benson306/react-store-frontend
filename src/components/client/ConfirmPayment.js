@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import FailedTransaction from "./FailedTransaction";
 import SuccessTransaction from "./SuccessTransaction";
 
 const ConfirmPayment = () => {
 
-    const location = useLocation();
+    const [searchParams, setSearchParams] =useSearchParams();
 
-    console.log(location);
+    console.log(searchParams.get('OrderMerchantReference'));
 
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(true);
