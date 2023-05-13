@@ -8,8 +8,6 @@ const Cart = () => {
     const { products, total, removeFromCart } = useCart();
 
     
-
-    
     const handleRemoveFromCart = (product) =>{
         removeFromCart(product)
     }

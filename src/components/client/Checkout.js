@@ -36,7 +36,7 @@ const Checkout = () => {
         setLoading(true);
         let newData = {...data, products, total, location, deliveryCost};
 
-        fetch('http://localhost:5000/Checkout',{
+        fetch(`${process.env.REACT_APP_SERVER_URL}/Checkout`,{
             method: 'POST',
             headers:{
                 "Content-Type":"application/json"
