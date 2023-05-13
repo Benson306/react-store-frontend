@@ -1,12 +1,20 @@
 import { Link } from "react-router-dom";
 import { Checkmark } from 'react-checkmark';
+import { useEffect } from "react";
+import useCart from "../../utils/CartContext";
 
 const SuccessTransaction = () => {
+
+    const {  clearState } = useCart();
+
+    useEffect(()=>{
+        clearState();
+    })
+
     return ( <div> 
         <div className='mt-20 flex justify-center'>
             <div className='block'>
                 <div className='flex justify-center mb-10 ml-5'>
-                    {/* <CancelOutlinedIcon fontSize="inherit" color="error"/> */}
                     <Checkmark size='xxLarge' />
                 </div>
                 <div className="flex justify-center text-center mb-10 px-10 ml-5 text-2xl">

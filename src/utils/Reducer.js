@@ -1,9 +1,10 @@
 
+const storedState = localStorage.getItem('state');
 
-export const initialState = {
-    total:0,
-    products: []
-}
+export const initialState = storedState ? JSON.parse(storedState) :{
+                                                                        total:0,
+                                                                        products: []
+                                                                    }
 
 
 const reducer = (state, action) =>{
@@ -33,6 +34,13 @@ const reducer = (state, action) =>{
             }
             localStorage.setItem('state', JSON.stringify(updateState));
             return updateState;
+        case "CLEAR_STATE":
+            let clear = {
+                    total:0,
+                    products: []
+            }
+            localStorage.removeItem('state');
+            return clear;
         default:
             throw new Error(`No case for type ${type} found in reducer`)
     }

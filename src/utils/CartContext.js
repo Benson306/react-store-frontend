@@ -69,11 +69,19 @@ export const CartProvider = ({ children }) => {
         })
     }
 
+    const clearState = () => {
+        dispatch({
+            type: "CLEAR_STATE",
+            payload: {}
+        })
+    }
+
     const value = {
         total: state.total,
         products: state.products,
         addToCart,
-        removeFromCart
+        removeFromCart,
+        clearState
     }
 
     return <CartContext.Provider value={value}>
