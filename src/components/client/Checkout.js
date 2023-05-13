@@ -44,10 +44,11 @@ const Checkout = () => {
             body: JSON.stringify(newData)
         })
         .then((res)=>{
-            console.log(res)
+            
             return res.json()
         })
         .then((res)=>{
+            console.log(res)
             setLink(res.redirect_url);
 
             setLoading(false);
