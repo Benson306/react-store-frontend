@@ -52,7 +52,7 @@ const Checkout = () => {
 
             setLoading(false);
 
-            setShowIframe(true);
+            //setShowIframe(true);
         })
         .catch( err=>{
             console.log(err);
