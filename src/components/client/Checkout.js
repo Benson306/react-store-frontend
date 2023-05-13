@@ -89,7 +89,7 @@ const Checkout = () => {
         {(props)=>(
     <Form>
         
-        <div className="block lg:flex mx-5 lg:mx-10">                
+        <div className="block lg:flex lg:justify-center mx-5 lg:mx-10">                
             <div className="block w-full lg:w-1/2">
                 <div className="font-bold mb-5">Account Information</div>
                 <div>
