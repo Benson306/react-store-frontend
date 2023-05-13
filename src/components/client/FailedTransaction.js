@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const FailedTransaction = () => {
     return ( <div> 
-    <div className='mt-28 flex justify-center'>
+    <div className='mt-32 flex justify-center'>
         <div className='block'>
             <div className='flex justify-center mb-10' style={{fontSize:'150px'}}>
                 <CancelOutlinedIcon fontSize="inherit" color="error"/>
