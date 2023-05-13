@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import FailedTransaction from "./FailedTransaction";
 import SuccessTransaction from "./SuccessTransaction";
+import PuffLoader from "react-spinners/PuffLoader";
 
 const ConfirmPayment = () => {
 
@@ -38,7 +39,7 @@ const ConfirmPayment = () => {
     return ( <div>
         {
             loading && <div class="flex items-center justify-center h-screen">
-            Loading ...
+            <PuffLoader size={60} color={"#172554"}/>
           </div>
         }
         {

@@ -273,7 +273,8 @@ const Checkout = () => {
                 </div>
 
                 <button className="collapse lg:visible w-28 flex justify-center p-1 border-2 border-black mt-10" type="submit">
-                    PAY
+                    { loading &&  <div><SyncLoader size={6} color={"black"}/></div> }
+                    {!loading && <div>PAY</div> }
                 </button>
 
 
