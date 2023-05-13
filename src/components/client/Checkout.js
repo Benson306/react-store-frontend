@@ -36,7 +36,7 @@ const Checkout = () => {
         setLoading(true);
         let newData = {...data, products, total, location, deliveryCost};
 
-        fetch(`${process.env.REACT_APP_SERVER_URL}/Checkout`,{
+        fetch(`/api/Checkout`,{
             method: 'POST',
             headers:{
                 "Content-Type":"application/json"
