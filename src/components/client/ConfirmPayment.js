@@ -7,13 +7,13 @@ const ConfirmPayment = () => {
 
     const [searchParams, setSearchParams] =useSearchParams();
 
-    console.log(searchParams.get('OrderMerchantReference'));
+    let id = searchParams.get('OrderMerchantReference');
 
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
-        fetch('/api/ConfirmPayment/645f19141f47848c6f199e13')
+        fetch(`/api/ConfirmPayment/${id}`)
         .then(res => {
             return res.json();
         })
