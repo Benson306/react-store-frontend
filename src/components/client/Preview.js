@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import he from 'he';
+//import he from 'he';
 import { useEffect, useState } from "react";
 import useCart from "../../utils/CartContext";
 import { ToastContainer, toast } from 'react-toastify';
@@ -16,7 +16,7 @@ const Preview = () => {
 
     const data = location.state.data;
 
-    const html = he.decode(data.description);
+    // const html = he.decode(data.description);
 
     const { addToCart } = useCart();
 
@@ -77,9 +77,9 @@ const Preview = () => {
            </form>
            <hr />
 
-           <div className="text-bold py-8">Description</div>
+           {/* <div className="text-bold py-8">Description</div>
 
-           <div className="break-words" dangerouslySetInnerHTML={{ __html: html}} />
+           <div className="break-words" dangerouslySetInnerHTML={{ __html: html}} /> */}
 
            <div className="collapse lg:visible w-52 mt-10 flex justify-center p-1 border-2 border-black" onClick={() => handleAddToCart()}>
             ADD TO CART
