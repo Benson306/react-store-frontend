@@ -55,7 +55,7 @@ const Cart = () => {
                 <div className="text-bold">Ksh.{total}</div>
                     
             </div>
-            <div className="flex justify-center px-10 ml-5 mb-8">
+            <div className="flex justify-center px-10 ml-5 lg:mb-8">
                 <Link to={'/checkout'}><div className="collapse lg:visible w-48 flex justify-center p-1 border-2 border-black" >
                         CHECKOUT
                 </div></Link>
