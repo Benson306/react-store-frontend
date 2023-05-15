@@ -81,15 +81,15 @@ const Preview = () => {
 
            <div className="break-words" dangerouslySetInnerHTML={{ __html: html}} /> */}
 
-           <div className="collapse lg:visible w-52 mt-10 flex justify-center p-1 border-2 border-black" onClick={() => handleAddToCart()}>
+           <button className="collapse lg:visible w-52 mt-10 flex justify-center p-1 border-2 border-black" onClick={() => handleAddToCart()}>
             ADD TO CART
-           </div>
+           </button>
 
         
         </div>
-        <div className="visible lg:collapse fixed bottom-0 bg-blue-950 text-white text-center w-full lg:w-0 p-4 text-bold tracking-wider font-serif" onClick={() => handleAddToCart()}>
+        <button className="visible lg:collapse fixed bottom-0 bg-blue-950 text-white text-center w-full lg:w-0 p-4 text-bold tracking-wider font-serif" onClick={() => handleAddToCart()}>
             ADD TO CART
-        </div>
+        </button>
         
     </div> );
 }
