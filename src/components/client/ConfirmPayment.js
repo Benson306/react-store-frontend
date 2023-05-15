@@ -10,6 +10,8 @@ const ConfirmPayment = () => {
 
     let id = searchParams.get('OrderMerchantReference');
 
+    console.log(id);
+
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(true);
 
