@@ -16,7 +16,6 @@ function App() {
     <div className="App">
     <CartProvider>
       <HeaderBar />
-
       <Routes>
         <Route path="/" element={<Navigation />} />
         <Route path="/preview" element={<Preview />}/>
