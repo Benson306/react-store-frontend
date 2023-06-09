@@ -30,8 +30,8 @@ const SuccessTransaction = () => {
                     Thank You!
                 </div>
                 <div className="flex justify-center text-center px-10 ml-5 mb-5 text-lg" style={{fontSize:'3em'}}>&#x1F38A;</div>
-                <div className="flex justify-center px-10 ml-5">
-                    <Link to={'/'}><div className="collapse lg:visible w-48 flex justify-center p-1 border-2 border-black" >
+                <div className="flex justify-center px-10 ml-5 ">
+                    <Link to={'/'}><div className="collapse lg:visible w-48 flex justify-center p-1 border-2 border-black lg:mt-10" >
                             HOME
                     </div></Link>
                 </div>
