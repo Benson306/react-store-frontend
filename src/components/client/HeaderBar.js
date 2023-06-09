@@ -1,6 +1,6 @@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import KeyboardBackspaceSharpIcon from '@mui/icons-material/KeyboardBackspaceSharp';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useCart from '../../utils/CartContext';
 
@@ -30,11 +30,13 @@ const HeaderBar = () => {
     { !show && <div className='lg:pl-10 w-6'></div>}
 
     <div className='font-sans text-lg lg:text-3xl text-center tracking-widest font-bold flex items-center'>SHOP</div>
-
+    
+    <Link onClick={() => navigate('/cart')}>
     <div className='flex items-center'>
-        <ShoppingCartIcon fontSize={'medium'} onClick={() => navigate('/cart')}  />
+        <ShoppingCartIcon fontSize={'medium'}   />
         <sup class="font-features sups bg"><div className='text-black bg-black'>{products.length}</div></sup>
     </div>
+    </Link>
 
 </div> );
 }
