@@ -31,7 +31,7 @@ const HeaderBar = () => {
 
     <div className='font-sans text-lg lg:text-3xl text-center tracking-widest font-bold flex items-center'>SHOP</div>
     
-    <Link onClick={() => navigate('/cart')}>
+    <Link to={'/cart'} >
     <div className='flex items-center'>
         <ShoppingCartIcon fontSize={'medium'}   />
         <sup class="font-features sups bg"><div className='text-black bg-black'>{products.length}</div></sup>
