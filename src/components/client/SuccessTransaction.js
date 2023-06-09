@@ -12,9 +12,9 @@ const SuccessTransaction = () => {
     })
 
     return ( <div> 
-        <div className='mt-20 flex justify-center'>
+        <div className='mt-10 flex justify-center'>
             <div className='block'>
-                <div className='flex justify-center mb-10 ml-5'>
+                <div className='flex justify-center mb-5 ml-5'>
                     <Checkmark size='xxLarge' />
                 </div>
                 <div className="flex justify-center text-center mb-5 px-10 ml-5 text-2xl">
