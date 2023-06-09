@@ -17,13 +17,13 @@ const SuccessTransaction = () => {
                 <div className='flex justify-center mb-10 ml-5'>
                     <Checkmark size='xxLarge' />
                 </div>
-                <div className="flex justify-center text-center mb-10 px-10 ml-5 text-2xl">
+                <div className="flex justify-center text-center mb-5 px-10 ml-5 text-2xl">
                     Your Order Has Been Placed Succesfully. 
                 </div>
-                <div className="flex justify-center text-center mb-5 px-10 ml-5 text-lg text-gray-600">
+                <div className="flex justify-center text-center mb-3 px-10 ml-5 text-lg text-gray-600">
                     Check Your email for Details.
                 </div>
-                <div className="flex justify-center text-center mb-5 px-10 ml-5 text-lg text-gray-600">
+                <div className="flex justify-center text-center mb-3 px-10 ml-5 text-lg text-gray-600">
                     You will be contacted by an IkoNini agent within the next few hours to make arrangements on delivery.
                 </div>
                 <div className="flex justify-center text-center mb-4 px-10 ml-5 text-lg">
