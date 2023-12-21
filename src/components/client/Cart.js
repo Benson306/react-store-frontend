@@ -22,11 +22,11 @@ const Cart = () => {
             { products.map(product =>(
                 <div className="flex justify-center lg:justify-around mx-5 lg:mx-80 mb-5 lg:mb-3">
                     
-                    <img  src={require(`../../productImages/${product.image}`) } className="w-20 h-20 lg:w-44 lg:h-auto"/>
+                    <img src={`${process.env.REACT_APP_API_URL}/uploads/${product.image}`} className="w-20 h-20 lg:w-44 lg:h-auto"/>
                     
                     
                     <div className="block lg:flex lg:gap-5  lg:justify-around text-sm lg:text-base ">
-                        <div className="flex items-center text-xs lg:text-base w-52 lg:w-72 font-bold lg:font-normal">{product.title}</div>
+                        <div className="flex items-center text-xs lg:text-base w-52 lg:w-72 font-bold lg:font-normal">{product.productName}</div>
                         <div className="flex py-0 w-10 lg:w-28">
                                 <div className="text-gray-500 w-10 lg:w-10 flex items-center">Qty:</div>
                                 <div className="flex items-center">{product.quantity}

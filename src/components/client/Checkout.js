@@ -249,7 +249,7 @@ const Checkout = () => {
                     products.map( product =>(
                         <div className="flex mb-1 text-xs lg:text-base">
                             <div className="w-48 lg:w-64">
-                                { product.title }
+                                { product.productName }
                             </div>
                             <div className="ml-5 lg:ml-0 w-5 lg:w-20">
                                X { product.quantity }

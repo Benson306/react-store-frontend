@@ -2,6 +2,7 @@ import { Tab, Tabs, Box, Typography } from '@mui/material';
 import { useState } from 'react';
 import Hoodies from './Hoodies';
 import Tshirts from './Tshirts';
+import Videos from './Videos';
 
 const Navigation = () => {
     const currentYear = new Date().getFullYear();
@@ -19,6 +20,7 @@ const Navigation = () => {
             <Tabs value={currentTabIndex} onChange={handleTabChange}>
                 <Tab label="T-shirts" />
                 <Tab label="Hoodies" />
+                <Tab label="Videos" />
             </Tabs>
         </div>
         {currentTabIndex === 0 && (
@@ -33,6 +35,14 @@ const Navigation = () => {
         <Box sx={{ p: 0 }} className="mt-3">
           <Typography>
                     <Hoodies />
+          </Typography>
+        </Box>
+        )}
+
+        {currentTabIndex === 2 && (
+        <Box sx={{ p: 0 }} className="mt-3">
+          <Typography>
+                    <Videos />
           </Typography>
         </Box>
         )}
