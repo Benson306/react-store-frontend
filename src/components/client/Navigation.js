@@ -14,7 +14,7 @@ const Navigation = () => {
         setCurrentTabIndex(tabIndex);
     };
 
-    return ( <div className="">
+    return ( <div className="min-h-screen">
         
         <div className='flex justify-center mt-5 text-gray-800 text-bold'>
             <Tabs value={currentTabIndex} onChange={handleTabChange}>
@@ -47,7 +47,7 @@ const Navigation = () => {
         </Box>
         )}
 
-        <div className="bottom-0 text-center p-5">
+        <div className="fixed bottom-0 mtext-center p-5">
             © {currentYear} Copyright Iko Nini
         </div>
     </div> );

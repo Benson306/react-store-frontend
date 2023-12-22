@@ -30,7 +30,7 @@ const Hoodies = () => {
         { loading && <div className="text-center text-slate-500 text-md mb-5">Loading...</div>}
         <div className="text-center text-slate-500 text-md mb-5">({!loading && hoodies.length} items)</div>
 
-        <div className='flex flex-wrap'>
+        <div className='flex flex-wrap justify-center'>
            { 
            
            !loading && hoodies.map( hoodie => (
