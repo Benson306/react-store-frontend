@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 const Videos = () => {
 
     const [loading, setLoading] = useState(true);
-    const [hoodies, setHoodies] = useState(null);
+    const [hoodies, setHoodies] = useState([]);
     const [error, setError] = useState(false);
 
     useEffect(()=>{
