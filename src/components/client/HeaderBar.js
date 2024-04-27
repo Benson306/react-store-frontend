@@ -22,14 +22,14 @@ const HeaderBar = () => {
     const { products } = useCart();
     
 
-    return ( <div className="flex justify-between mx-7 lg:mx-20 mt-6">
+    return ( <div className="flex justify-between mx-7 lg:mx-20 mt-3 mb-3">
     { show && <div className='lg:pl-10'>
          <KeyboardBackspaceSharpIcon onClick={() => navigate('/')} /> 
     </div>
     }
     { !show && <div className='lg:pl-10 w-6'></div>}
 
-    <div className='font-sans text-lg lg:text-3xl text-center tracking-widest font-bold flex items-center'>SHOP</div>
+    <div className='font-sans text-lg lg:text-2xl text-center tracking-widest font-bold flex items-center'>IKO NINI</div>
     
     <Link to={'/cart'} >
     <div className='flex items-center'>
@@ -40,5 +40,5 @@ const HeaderBar = () => {
 
 </div> );
 }
- 
+
 export default HeaderBar;
