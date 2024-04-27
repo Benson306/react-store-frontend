@@ -15,7 +15,7 @@ export const CartProvider = ({ children }) => {
     },[])
 
     const addToCart = (product) => {
-        const itemIndex = state.products.findIndex(item => item.name === product.name);
+        const itemIndex = state.products.findIndex(item => item._id === product._id);
 
         if(itemIndex >= 0){ //If it exists in state
             state.products[itemIndex].quantity += Number(product.quantity);
@@ -41,7 +41,7 @@ export const CartProvider = ({ children }) => {
 
     const removeFromCart = (product) =>{
         const updatedCart = state.products.filter(currentProduct => 
-            currentProduct.name !== product.name
+            currentProduct._id !== product._id
         )
 
         updatedPrice(updatedCart);
