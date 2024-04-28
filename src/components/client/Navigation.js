@@ -47,7 +47,7 @@ const Navigation = () => {
         </Box>
         )}
 
-        <div className="fixed bottom-0 mtext-center p-5">
+        <div className="fixed bottom-0 text-center p-5 text-sm">
             © {currentYear} Copyright Iko Nini
         </div>
     </div> );

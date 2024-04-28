@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import reducer, { initialState } from "./Reducer";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CartContext = createContext(initialState);
 
@@ -15,14 +17,24 @@ export const CartProvider = ({ children }) => {
     },[])
 
     const addToCart = (product) => {
+        
         const itemIndex = state.products.findIndex(item => item._id === product._id);
+        
 
         if(itemIndex >= 0){ //If it exists in state
-            state.products[itemIndex].quantity += Number(product.quantity);
+            if(product.type && (product.type = "hoodie" || product.type == "tshirt")){
+                
+                state.products[itemIndex].quantity += Number(product.quantity);
 
-            state.products[itemIndex].size = product.size;
-
-            updatedPrice(state.products);
+                state.products[itemIndex].size = product.size;
+    
+                updatedPrice(state.products);
+                
+                toast("Product Has Been Added To Cart")
+            }else{
+                toast("Video already exists in the cart")
+            }
+            
         }else{
             //let newProduct = {...product, quantity: product.quantity}
 
@@ -36,6 +48,8 @@ export const CartProvider = ({ children }) => {
                     products: updatedCart
                 }
             })
+
+            toast("Product Has Been Added To Cart")
         }
     }
 

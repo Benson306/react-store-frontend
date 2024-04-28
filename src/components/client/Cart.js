@@ -20,13 +20,14 @@ const Cart = () => {
             <div className="text-center mt-1 text-gray-500 lg:ml-8 mb-10">{products.length} item(s)</div>
 
             { products.map(product =>(
-                <div className="flex justify-center lg:justify-around mx-5 lg:mx-80 mb-5 lg:mb-3">
+                <div className="flex justify-center lg:justify-around mx-5 lg:mx-80 mb-5 lg:mb-3 gap-1">
                     
-                    <img src={`${process.env.REACT_APP_API_URL}/uploads/${product.image}`} className="w-20 h-20 lg:w-44 lg:h-auto"/>
-                    
+                    <img src={`${process.env.REACT_APP_API_URL}/uploads/${ product.image || product.thumbnail }`} className="w-20 h-20 lg:w-44 lg:h-auto"/>
                     
                     <div className="block lg:flex lg:gap-5  lg:justify-around text-sm lg:text-base ">
-                        <div className="flex items-center text-xs lg:text-base w-52 lg:w-72 font-bold lg:font-normal">{product.productName}</div>
+                        <div className="flex items-center text-xs lg:text-base w-52 lg:w-64 font-bold lg:font-normal">{ product.productName || product.title }</div>
+                        { 
+                            product.type == "hoodie" || product.type == "tshirt" ?  
                         <div className="flex py-0 w-10 lg:w-28">
                                 <div className="text-gray-500 w-10 lg:w-10 flex items-center">Qty:</div>
                                 <div className="flex items-center">{product.quantity}
@@ -40,7 +41,18 @@ const Cart = () => {
                                 </select>    */}
                                 </div>             
                         </div>
-                        <div className="flex items-center lg:w-14">Size: {product.size}</div>
+                        : 
+                        <div className="pb-2 lg:pb-4 flex gap-2 items-center text-sm mt-2 lg:mt-0">
+                            <img src={require('../../images/clock.png')} width={"15px"}/> 
+                            <span>{product.duration}</span>
+                        </div> 
+                        }
+                        { 
+                            product.type == "hoodie" || product.type == "tshirt" ?  
+                            <div className="flex items-center lg:w-24">Size: {product.size}</div> 
+                            : 
+                            <div className="flex items-center lg:w-24"></div> 
+                        }
                         <div className="flex items-center lg:w-20">Ksh {product.price}</div>
                     </div>
                     <div className="flex items-center m-0 lg:ml-10">
@@ -56,7 +68,7 @@ const Cart = () => {
                     
             </div>
             <div className="flex justify-center px-10 ml-5 lg:mb-8">
-                <Link to={'/checkout'}><div className="collapse lg:visible w-48 flex justify-center p-1 border-2 border-black" >
+                <Link to={'/checkout'}><div className="collapse lg:visible w-48 flex justify-center p-1 border-2 border-black hover:bg-black hover:text-white" >
                         CHECKOUT
                 </div></Link>
             </div>

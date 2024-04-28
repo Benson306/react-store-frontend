@@ -57,8 +57,6 @@ const Checkout = () => {
         .catch( err=>{
             console.log(err);
         })
-
-
     }
 
 
@@ -249,7 +247,7 @@ const Checkout = () => {
                     products.map( product =>(
                         <div className="flex mb-1 text-xs lg:text-base">
                             <div className="w-48 lg:w-64">
-                                { product.productName }
+                                { product.productName || product.title }
                             </div>
                             <div className="ml-5 lg:ml-0 w-5 lg:w-20">
                                X { product.quantity }
@@ -272,7 +270,7 @@ const Checkout = () => {
                     <div className="ml-12 lg:ml-0">KES. {total + deliveryCost}</div>
                 </div>
 
-                <button className="collapse lg:visible w-28 flex justify-center p-1 border-2 border-black mt-10" type="submit">
+                <button className="collapse lg:visible w-28 flex justify-center p-1 border-2 border-black mt-10 hover:bg-black hover:text-white" type="submit">
                     { loading &&  <div><SyncLoader size={6} color={"black"}/></div> }
                     {!loading && <div>PAY</div> }
                 </button>
