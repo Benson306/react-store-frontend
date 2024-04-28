@@ -44,7 +44,12 @@ const Cart = () => {
                         : 
                         <div className="pb-2 lg:pb-4 flex gap-2 items-center text-sm mt-2 lg:mt-0">
                             <img src={require('../../images/clock.png')} width={"15px"}/> 
-                            <span>{product.duration}</span>
+                            { 
+                                product.hours > 0 ? 
+                                <span className="text-sm capitalize">{product.hours} Hrs {product.minutes} Mins</span>
+                                    :
+                                <span className="text-sm capitalize">{product.minutes} Mins</span>
+                            }
                         </div> 
                         }
                         { 

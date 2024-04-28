@@ -109,8 +109,13 @@ const Preview = () => {
                 :
                 <div>
                     <div className="pb-4 flex gap-2 items-center text-sm">
-                        <img src={require('../../images/clock.png')} width={"20px"}/> 
-                        <span>{data.duration}</span>
+                        <img src={require('../../images/clock.png')} width={"20px"}/>
+                        { 
+                            data.hours > 0 ? 
+                            <span className="text-sm capitalize">{data.hours} Hrs {data.minutes} Mins</span>
+                                :
+                            <span className="text-sm capitalize">{data.minutes} Mins</span>
+                        }
                     </div>
                     <div className="text-gray-500 pb-4 lg:pb-5">Ksh {data.price}</div>
                 </div>
