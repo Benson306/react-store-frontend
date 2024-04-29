@@ -4,6 +4,8 @@ import towns from '../../data/towns.json';
 import * as yup from 'yup'
 import { Field, Form, Formik } from 'formik'
 import SyncLoader from "react-spinners/SyncLoader";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const myRegex = /^07\d{8}$/;
 
@@ -36,7 +38,7 @@ const Checkout = () => {
         setLoading(true);
         let newData = {...data, products, total, location, deliveryCost};
 
-        fetch(`/api/Checkout`,{
+        fetch(`${process.env.REACT_APP_API_URL}/Checkout`,{
             method: 'POST',
             headers:{
                 "Content-Type":"application/json"
@@ -44,15 +46,18 @@ const Checkout = () => {
             body: JSON.stringify(newData)
         })
         .then((res)=>{
+            if(res.ok){
+                res.json().then(response => {
+                    setLink(response.redirect_url);
+                    setLoading(false);
+                    setShowIframe(true);
+                })
+            }else{
+                res.json().then(response => {
+                    toast.error(response)
+                })
+            }
             
-            return res.json()
-        })
-        .then((res)=>{
-            setLink(res.redirect_url);
-
-            setLoading(false);
-
-            setShowIframe(true);
         })
         .catch( err=>{
             console.log(err);
@@ -61,6 +66,7 @@ const Checkout = () => {
 
 
     return ( <div className="mt-3 lg:mt-20 ">
+        <ToastContainer />
             <div className="flex justify-center mb-10 text-xl">Checkout</div>
             
     { showIframe ? (
