@@ -10,6 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const myRegex = /^07\d{8}$/;
 
 const checkoutSchema = yup.object({
+    firstname: yup.string().required().min(3),
+    secondname: yup.string().required().min(3),
     email: yup.string().email('Invalid Email').required().min(3),
     phoneNumber: yup.string().matches(myRegex, "Phone number is not valid").required()
 })
@@ -84,7 +86,7 @@ const Checkout = () => {
     :
     
     <Formik
-            initialValues={{email:'', phoneNumber:''}}
+            initialValues={{firstname: '', secondname: '', email:'', phoneNumber:''}}
             validationSchema={checkoutSchema}
             onSubmit={(values)=>{
                     handleSubmit(values);
@@ -97,14 +99,24 @@ const Checkout = () => {
         <div className="block lg:flex lg:justify-center mx-5 lg:mx-10">                
             <div className="block w-full lg:w-1/2">
                 <div className="font-bold mb-5">Account Information</div>
+                <div className="flex gap-4">
+                    <div>
+                        <Field type="text" name="firstname" value={props.values.firstname} placeholder="First name"  className="border-b-2 p-3 mb-2 w-full lg:w-3/4" required/>
+                        <div className="p-1 capitalize text-red-900 text-xs">{props.touched.firstname && props.errors.firstname}</div>
+                    </div>
+                    <div>
+                        <Field type="text" name="secondname" value={props.values.secondname} placeholder="Second name"  className="border-b-2 p-3 mb-2 w-full lg:w-3/4" required/>
+                        <div className="p-1 capitalize text-red-900 text-xs">{props.touched.secondname && props.errors.secondname}</div>
+                    </div>
+                </div>                
                 <div>
-                <Field type="email" name="email" value={props.values.email} placeholder="Email"  className="border-b-2 p-3 mb-5 w-full lg:w-3/4" required/>
+                <Field type="email" name="email" value={props.values.email} placeholder="Email"  className="border-b-2 p-3 mb-2 w-full lg:w-3/4" required/>
                 </div>
-                <div className="p-1 capitalize text-red-900">{props.touched.email && props.errors.email}</div>
+                <div className="p-1 capitalize text-red-900 text-xs">{props.touched.email && props.errors.email}</div>
                 <div>
-                <Field type="text" name="phoneNumber" value={props.values.phoneNumber} placeholder="Phone Number" className="border-b-2 p-3 mb-5 w-full lg:w-3/4" required/>
+                <Field type="text" name="phoneNumber" value={props.values.phoneNumber} placeholder="Phone Number" className="border-b-2 p-3 mb-2 w-full lg:w-3/4" required/>
                 </div>
-                <div className="p-1 capitalize text-red-900">{props.touched.phoneNumber && props.errors.phoneNumber}</div>
+                <div className="p-1 capitalize text-red-900 text-xs">{props.touched.phoneNumber && props.errors.phoneNumber}</div>
             </div>
 
             <div >
