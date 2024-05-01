@@ -18,7 +18,7 @@ const ConfirmPayment = () => {
         fetch(`${process.env.REACT_APP_API_URL}/ConfirmPayment/${id}`)
         .then(res => {
             if(res.ok){
-                setSuccess(false);
+                setSuccess(true);
                 setLoading(false);
             }else{
                 setSuccess(false);
