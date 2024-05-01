@@ -17,21 +17,13 @@ const ConfirmPayment = () => {
     useEffect(()=>{
         fetch(`${process.env.REACT_APP_API_URL}/ConfirmPayment/${id}`)
         .then(res => {
-            return res.json();
-        })
-        .then(res => {
-
-            console.log(res)
-
-            if(res === "Completed"){
-                setSuccess(true);
-            }else if(res === "Failed"){
+            if(res.ok){
                 setSuccess(false);
-            }else if(res === "Pending"){
+                setLoading(false);
+            }else{
                 setSuccess(false);
+                setLoading(false);
             }
-
-            setLoading(false);
         })
         .catch(err =>{
             setLoading(false);
