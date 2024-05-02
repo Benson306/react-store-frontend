@@ -12,7 +12,7 @@ const FailedTransaction = () => {
                 Transaction Failed.
             </div>
             <div className="flex justify-center px-10 ml-5">
-                <Link to={'/checkout'}><div className="collapse lg:visible w-48 flex justify-center p-1 border-2 border-black" >
+                <Link to={'/checkout'}><div className="collapse lg:visible w-48 flex justify-center p-1 border-2 border-black hover:bg-black hover:text-white" >
                         TRY AGAIN
                 </div></Link>
             </div>
