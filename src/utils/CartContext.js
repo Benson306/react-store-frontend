@@ -30,9 +30,13 @@ export const CartProvider = ({ children }) => {
     
                 updatedPrice(state.products);
                 
-                toast("Product Has Been Added To Cart")
+                toast("Product Has Been Added To Cart",{
+                    autoClose: 500
+                })
             }else{
-                toast("Video already exists in the cart")
+                toast("Video already exists in the cart",{
+                    autoClose: 500
+                })
             }
             
         }else{
