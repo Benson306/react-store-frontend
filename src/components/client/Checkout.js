@@ -33,21 +33,37 @@ const Checkout = () => {
 
     const [townsLoading, setTownsLoading] = useState(true);
 
+    const [allVideos, SetAllVideos] = useState(false);
+
     useEffect(()=>{
+        let allItemsAreVideos = products.every(item => item.title);
+
         if(location !== null){
             const town = towns.filter( town => town._id === location);
-            setDeliveryCost(town[0].price);
+            if(allItemsAreVideos){
+                setDeliveryCost(0);
+            }else{
+                setDeliveryCost(town[0].price);
+            }
+            SetAllVideos(allItemsAreVideos);
+            
         }
     }, [location])
 
     useEffect(()=>{
         fetch(`${process.env.REACT_APP_API_URL}/get_locations`)
         .then((data)=>{
+            let allItemsAreVideos = products.every(item => item.title);
             if(data.ok){
                 data.json().then((res)=>{
                     setTowns(res);
                     setLocation(res[0]._id);
-                    setDeliveryCost(res[0].price);
+                    if(allItemsAreVideos){
+                        setDeliveryCost(0);
+                    }else{
+                        setDeliveryCost(res[0].price);
+                    }
+                    SetAllVideos(allItemsAreVideos);
                     setTownsLoading(false);
                 })
             }else{
@@ -143,17 +159,24 @@ const Checkout = () => {
             </div>
 
             <div >
-                <div className="font-bold mb-5">Select Delivery Location</div>
-                <select className="w-full p-1 lg:p-3 bg-white mb-4 border-b-2" onChange={(e)=>{ setLocation(e.target.value); }}>
-                        {
-                            townsLoading ?
-                            <option>Loading....</option>
-                            :
-                            towns.map( town => 
-                                <option value={town._id}>{town.town} - Ksh.{town.price}</option>
-                            )
-                        }
-                </select>
+                { !allVideos && 
+                <div>
+                    <div className="font-bold mb-5">Select Delivery Location</div>
+                    <select className="w-full p-1 lg:p-3 bg-white mb-4 border-b-2" onChange={(e)=>{ setLocation(e.target.value); }}>
+                            {
+                                townsLoading ?
+                                <option>Loading....</option>
+                                :
+                                towns.map( town => 
+                                    <option value={town._id}>{town.town} - Ksh.{town.price}</option>
+                                )
+                            }
+                    </select>
+                </div>
+                }
+                {
+                    allVideos && <div className="mb-8 text-lg text-zinc-700">* Links to our watch streams will be emailed to you via the email you have provided on <b>Account Information</b></div>
+                }
                 <div className="font-bold mb-5">Order Summary</div>
                 {
                     products.map( product =>(
