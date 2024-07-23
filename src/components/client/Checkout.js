@@ -175,7 +175,7 @@ const Checkout = () => {
                 </div>
                 }
                 {
-                    allVideos && <div className="mb-8 text-lg text-zinc-700">* Links to our watch streams will be emailed to you via the email you have provided on <b>Account Information</b></div>
+                    allVideos && <div className="mb-8 text-lg text-zinc-700 w-3/4">* Links to our watch streams will be emailed to you via the email you have provided on <b>Account Information</b></div>
                 }
                 <div className="font-bold mb-5">Order Summary</div>
                 {
