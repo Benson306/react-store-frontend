@@ -22,23 +22,26 @@ const HeaderBar = () => {
     const { products } = useCart();
     
 
-    return ( <div className="flex justify-between mx-7 lg:mx-20 mt-3 mb-3">
-    { show && <div className='lg:pl-10'>
-         <KeyboardBackspaceSharpIcon onClick={() => navigate('/')} /> 
-    </div>
-    }
-    { !show && <div className='lg:pl-10 w-6'></div>}
+    return ( 
+        <div className="w-full fixed top-0 flex justify-between px-6 py-2 bg-gradient-to-b from-[#243c5a] to-indigo-500">
+            { show && <div className='lg:pl-10'>
+                <KeyboardBackspaceSharpIcon onClick={() => navigate('/')} /> 
+            </div>
+            }
 
-    <div className='font-sans text-lg lg:text-2xl text-center tracking-widest font-bold flex items-center'>IKO NINI</div>
-    
-    <Link to={'/cart'} >
-    <div className='flex items-center'>
-        <ShoppingCartIcon fontSize={'medium'}   />
-        <sup class="font-features sups bg"><div className='text-black bg-black'>{products.length}</div></sup>
-    </div>
-    </Link>
-
-</div> );
+            <div className='flex justify-between'>
+                <img src={require('../../images/logo.png')} className='w-[4rem] h-[4rem] mr-2 rounded-full z-50' />
+                <div className='font-sans text-xl text-white text-center tracking-widest font-bold flex items-center'>IKO NINI</div>
+            </div>
+            
+            <Link to={'/cart'} className='z-[999]'>
+                <div className='flex items-center text-white mt-4'>
+                    <ShoppingCartIcon fontSize={'large'} color='white' />
+                    <sup class="font-features sups bg"><div className='text-white text-xl ml-2'>{products.length}</div></sup>
+                </div>
+            </Link>
+        </div>
+    );
 }
 
 export default HeaderBar;

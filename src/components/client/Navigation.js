@@ -1,8 +1,10 @@
 import { Tab, Tabs, Box, Typography } from '@mui/material';
 import { useState } from 'react';
+import Home from './Home';
 import Hoodies from './Hoodies';
 import Tshirts from './Tshirts';
 import Videos from './Videos';
+import ContactUs from './ContactUs';
 
 const Navigation = () => {
     const currentYear = new Date().getFullYear();
@@ -16,17 +18,23 @@ const Navigation = () => {
 
     return ( <div className="min-h-screen">
         
-        <div className='flex justify-center mt-5 text-gray-800 text-bold'>
-            <Tabs value={currentTabIndex} onChange={handleTabChange}>
+        <div className='fixed inset-x-0 top-0 flex justify-center mt-5 text-white text-bold'>
+            <Tabs 
+              textColor="white"
+              value={currentTabIndex} 
+              onChange={handleTabChange}
+            >
+                <Tab label="Home"/>
+                <Tab label="Videos" />
                 <Tab label="T-shirts" />
                 <Tab label="Hoodies" />
-                <Tab label="Videos" />
+                <Tab label="Contact Us" />
             </Tabs>
         </div>
         {currentTabIndex === 0 && (
         <Box sx={{ p: 0 }} className="mt-3">
           <Typography>
-                    <Tshirts />
+                    <Home />
           </Typography>
         </Box>
         )}
@@ -34,7 +42,7 @@ const Navigation = () => {
         {currentTabIndex === 1 && (
         <Box sx={{ p: 0 }} className="mt-3">
           <Typography>
-                    <Hoodies />
+                    <Videos />
           </Typography>
         </Box>
         )}
@@ -42,12 +50,31 @@ const Navigation = () => {
         {currentTabIndex === 2 && (
         <Box sx={{ p: 0 }} className="mt-3">
           <Typography>
-                    <Videos />
+                    <Tshirts />
+          </Typography>
+        </Box>
+        )}
+
+        {currentTabIndex === 3 && (
+        <Box sx={{ p: 0 }} className="mt-3">
+          <Typography>
+                    <Hoodies />
+          </Typography>
+        </Box>
+        )}
+
+        {currentTabIndex === 4 && (
+        <Box sx={{ p: 0 }} className="mt-3">
+          <Typography>
+                    <ContactUs />
           </Typography>
         </Box>
         )}
 
         <div className="fixed bottom-0 text-center p-5 text-sm">
+            <div className='flex justify-between px-8 py-8'>
+              
+            </div>
             © {currentYear} Copyright Iko Nini
         </div>
     </div> );
