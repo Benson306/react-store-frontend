@@ -153,9 +153,9 @@ const Checkout = () => {
                 </div>
                 <div className="p-1 capitalize text-red-900 text-xs">{props.touched.email && props.errors.email}</div>
                 <div>
-                <Field type="text" name="phoneNumber" value={props.values.phoneNumber} placeholder="Phone Number" className="border-b-2 p-3 mb-2 w-full lg:w-3/4" required/>
+                <Field type="text" name="phoneNumber" value={props.values.phoneNumber} placeholder="Phone Number" className="border-b-2 p-3 mb-2 w-full lg:w-3/4" />
                 </div>
-                <div className="p-1 capitalize text-red-900 text-xs">{props.touched.phoneNumber && props.errors.phoneNumber}</div>
+                {/* <div className="p-1 capitalize text-red-900 text-xs">{props.touched.phoneNumber && props.errors.phoneNumber}</div> */}
             </div>
 
             <div className="block w-full lg:w-1/2">
