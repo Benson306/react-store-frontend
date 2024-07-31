@@ -12,7 +12,7 @@ const checkoutSchema = yup.object({
     firstname: yup.string().required().min(3),
     secondname: yup.string().required().min(3),
     email: yup.string().email('Invalid Email').required().min(3),
-    phoneNumber: yup.string().matches(myRegex, "Phone number is not valid")
+    phoneNumber: yup.string().nullable().matches(myRegex, "Phone number is not valid")
 })
 
 const Checkout = () => {
