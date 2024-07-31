@@ -8,13 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const myRegex = /^07\d{8}$/;
 
-const checkoutSchema = yup.object({
-    firstname: yup.string().required().min(3),
-    secondname: yup.string().required().min(3),
-    email: yup.string().email('Invalid Email').required().min(3),
-    phoneNumber: yup.string().nullable().matches(myRegex, {message:"Phone number is not valid", excludeEmptyString: true})
-})
-
 const Checkout = () => {
 
     const { products, total } = useCart();
@@ -75,6 +68,15 @@ const Checkout = () => {
         })
     },[])
 
+
+    const checkoutSchema = yup.object({
+        firstname: yup.string().required().min(3),
+        secondname: yup.string().required().min(3),
+        email: yup.string().email('Invalid Email').required().min(3),
+        phoneNumber: yup.string().nullable().matches(myRegex, {message:"Phone number is not valid", excludeEmptyString: true}),
+        minPrice: yup.number().min(deliveryCost + total, `Minimum price is ${deliveryCost + total}`)
+    })
+
     const handleSubmit = (data) =>{
         setLoading(true);
         let newData = {...data, products, location};
@@ -93,10 +95,14 @@ const Checkout = () => {
                     setLoading(false);
                     setShowIframe(true);
                 })
-            }else{
-                res.json().then(response => {
-                    toast.error(response)
-                })
+            }else{ 
+                if(res.status == 400){
+                    toast.error("Min price is invalid");
+                }else{
+                    res.json().then(response => {
+                        toast.error(response)
+                    })
+                }
             }
             
         })
@@ -104,6 +110,11 @@ const Checkout = () => {
             console.log(err);
         })
     }
+
+    const [ firstName, setFirstName] = useState('');
+    const [ secondName, setSecondName] = useState('');
+    const [ email, setEmail] = useState('');
+    const [ phoneNumber, setPhoneNumber] = useState('');
 
 
     return ( <div className="mt-3 lg:mt-20 ">
@@ -125,7 +136,8 @@ const Checkout = () => {
     :
     
     <Formik
-            initialValues={{firstname: '', secondname: '', email:'', phoneNumber:''}}
+            initialValues={{firstname: firstName, secondname: secondName, email:email, phoneNumber:phoneNumber, minPrice: deliveryCost + total}}
+            enableReinitialize={true}
             validationSchema={checkoutSchema}
             onSubmit={(values)=>{
                     handleSubmit(values);
@@ -140,20 +152,20 @@ const Checkout = () => {
                 <div className="font-bold mb-5">Account Information</div>
                 <div className="flex gap-4">
                     <div>
-                        <Field type="text" name="firstname" value={props.values.firstname} placeholder="First name"  className="border-b-2 p-3 mb-2 w-full lg:w-3/4" required/>
+                        <Field type="text" name="firstname" onChange={e => {setFirstName(e.target.value)}} value={props.values.firstname} placeholder="First name"  className="border-b-2 p-3 mb-2 w-full lg:w-3/4" required/>
                         <div className="p-1 capitalize text-red-900 text-xs">{props.touched.firstname && props.errors.firstname}</div>
                     </div>
                     <div>
-                        <Field type="text" name="secondname" value={props.values.secondname} placeholder="Second name"  className="border-b-2 p-3 mb-2 w-full lg:w-3/4" required/>
+                        <Field type="text" name="secondname" onChange={e => {setSecondName(e.target.value)}} value={props.values.secondname} placeholder="Second name"  className="border-b-2 p-3 mb-2 w-full lg:w-3/4" required/>
                         <div className="p-1 capitalize text-red-900 text-xs">{props.touched.secondname && props.errors.secondname}</div>
                     </div>
                 </div>                
                 <div>
-                <Field type="email" name="email" value={props.values.email} placeholder="Email"  className="border-b-2 p-3 mb-2 w-full lg:w-3/4" required/>
+                <Field type="email" name="email" onChange={e => {setEmail(e.target.value)}} value={props.values.email} placeholder="Email"  className="border-b-2 p-3 mb-2 w-full lg:w-3/4" required/>
                 </div>
                 <div className="p-1 capitalize text-red-900 text-xs">{props.touched.email && props.errors.email}</div>
                 <div>
-                <Field type="text" name="phoneNumber" value={props.values.phoneNumber} placeholder="Phone Number" className="border-b-2 p-3 mb-2 w-full lg:w-3/4" />
+                <Field type="text" name="phoneNumber" onChange={e => {setPhoneNumber(e.target.value)}} value={props.values.phoneNumber} placeholder="Phone Number" className="border-b-2 p-3 mb-2 w-full lg:w-3/4" />
                 </div>
                 {/* <div className="p-1 capitalize text-red-900 text-xs">{props.touched.phoneNumber && props.errors.phoneNumber}</div> */}
             </div>
@@ -168,7 +180,7 @@ const Checkout = () => {
                                 <option>Loading....</option>
                                 :
                                 towns.map( town => 
-                                    <option value={town._id}>{town.town} - Ksh.{town.price}</option>
+                                    <option key={town._id} value={town._id}>{town.town} - Ksh.{town.price}</option>
                                 )
                             }
                     </select>
@@ -196,13 +208,20 @@ const Checkout = () => {
                 <hr />
 
                 <div className="flex mt-5 text-xs lg:text-base">
-                    <div className="w-48 lg:w-80  font-bold">Delivery Cost:</div>
+                    <div className="w-48 lg:w-80 lg:mr-6 font-bold">Delivery Cost:</div>
                     <div className="ml-12 lg:ml-0">KES. {deliveryCost}</div>
                 </div>
 
                 <div className="flex mt-5 text-xs lg:text-base">
-                    <div className="w-48 lg:w-80 font-bold">Total:</div>
-                    <div className="ml-12 lg:ml-0">KES. {total + deliveryCost}</div>
+                    <div className="w-72 lg:w-80 lg:mr-4 font-bold">Min Price:</div>
+                    <div>
+                        <div className="flex">
+                            <span className="p-2">KES. </span>
+                            <Field type="number" name="minPrice" value={props.values.minPrice} className="border-b-2 p-2 mb-2 w-full lg:w-3/4" />
+                        </div>
+                        <div className="p-1 capitalize text-red-900 text-xs">{props.touched.minPrice && props.errors.minPrice}</div>
+                    </div>
+                    {/* <div className="ml-12 lg:ml-0">KES. {total + deliveryCost}</div> */}
                 </div>
 
                 <button className="collapse lg:visible w-28 flex justify-center p-1 border-2 border-black mt-10 hover:bg-black hover:text-white" type="submit">
