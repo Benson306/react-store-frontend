@@ -20,14 +20,14 @@ const Tshirts = () => {
             setError(true)
         })
     },[])
-    return ( <div className='mb-10'>
+    return ( <div className="w-full h-full min-h-[90vh] bg-[url('./images/background_bg.jpeg')] z-10">
         <div className='invisible lg:visible h-0 lg:h-auto'>
             <img src={require('../../images/mens_tshirts.jpg')} className='object-cover' style={{ width: '100%', maxHeight: '250px' }} alt="" />
         </div>
 
-        <div className='text-center mt-5 text-gray-950 text-bold font-serif text-xl tracking-wider'>Tshirts</div>
-        { loading && <div className="text-center text-slate-500 text-md mb-5">Loading...</div>}
-        <div className="text-center text-slate-500 text-md mb-5">({!loading && hoodies.length} items)</div>
+        <div className='text-center mt-5 text-white text-bold font-serif text-xl tracking-wider'>Tshirts</div>
+        { loading && <div className="text-center text-white text-md mb-5">Loading...</div>}
+        <div className="text-center text-white text-md mb-5">({!loading && hoodies.length} items)</div>
 
         <div className='flex flex-wrap justify-center'>
            { 

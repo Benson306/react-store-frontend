@@ -23,13 +23,13 @@ const HeaderBar = () => {
     
 
     return ( 
-        <div className="w-full fixed top-0 flex justify-between px-6 py-2 bg-gradient-to-b from-[#243c5a] to-indigo-500">
+        <div className="w-full fixed top-0 flex justify-between px-6 py-2 bg-gradient-to-b from-[#243c5a] to-indigo-500 z-[99]">
             { show && <div className='lg:pl-10'>
                 <KeyboardBackspaceSharpIcon onClick={() => navigate('/')} /> 
             </div>
             }
 
-            <div className='flex justify-between'>
+            <div className='flex justify-between z-[999]'>
                 <img src={require('../../images/logo.png')} className='w-[4rem] h-[4rem] mr-2 rounded-full z-50' />
                 <div className='font-sans text-xl text-white text-center tracking-widest font-bold flex items-center'>IKO NINI</div>
             </div>
