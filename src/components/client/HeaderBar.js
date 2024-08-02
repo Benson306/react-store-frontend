@@ -1,15 +1,31 @@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import DehazeIcon from '@mui/icons-material/Dehaze';
 import KeyboardBackspaceSharpIcon from '@mui/icons-material/KeyboardBackspaceSharp';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import useCart from '../../utils/CartContext';
 
-const HeaderBar = () => {
+const HeaderBar = ({showNav, setShowNav}) => {
     const location = useLocation();
 
     const [show, setShow] = useState(false);
+    const [orientation, setOrientation] = useState('horizontal');
 
     const navigate = useNavigate();
+
+    const toggleNav = (e) => {
+        e.preventDefault();
+        if (showNav) {
+            setShowNav(false);
+        } else {
+            setShowNav(true);
+        }
+    };
+
+    useEffect(() => {
+        if (window.screen.width < 768) setOrientation('vertical'); 
+        else setOrientation('horizontal');
+    }, [window.screen.width]);
 
     useEffect(()=>{
         if(location.pathname === '/preview' || location.pathname === '/cart' || location.pathname === '/checkout'){
@@ -17,7 +33,7 @@ const HeaderBar = () => {
         }else{
             setShow(false)
         }
-    })
+    });
 
     const { products } = useCart();
     
@@ -29,7 +45,11 @@ const HeaderBar = () => {
             </div>
             }
 
-            <div className='flex justify-between z-[999]'>
+            { orientation === 'vertical' && <a href='#'>
+                <DehazeIcon onClick={e => toggleNav(e)} className='text-white mt-5'/>
+            </a> }
+
+            <div className='md:ml-0 flex justify-between z-[999]'>
                 <img src={require('../../images/logo.png')} className='w-[4rem] h-[4rem] mr-2 rounded-full z-50' />
                 <div className='font-sans text-xl text-white text-center tracking-widest font-bold flex items-center'>IKO NINI</div>
             </div>
@@ -37,7 +57,7 @@ const HeaderBar = () => {
             <Link to={'/cart'} className='z-[999]'>
                 <div className='flex items-center text-white mt-4'>
                     <ShoppingCartIcon fontSize={'large'} color='white' />
-                    <sup class="font-features sups bg"><div className='text-white text-xl ml-2'>{products.length}</div></sup>
+                    <sup className="font-features sups bg"><div className='text-white text-xl ml-2'>{products.length}</div></sup>
                 </div>
             </Link>
         </div>

@@ -20,7 +20,7 @@ const Videos = () => {
             setError(true)
         })
     },[])
-    return ( <div className="w-full h-full min-h-[90vh] bg-[url('./images/background_bg.jpeg')] z-10">
+    return ( <div className="w-full h-full min-h-[90vh] mt-20 md:mt-0 bg-[url('./images/background_bg.jpeg')] z-10">
         <div className='invisible lg:visible h-0 lg:h-auto'>
             <img src={require('../../images/videos.jpg')} className='object-cover' style={{ width: '100%', maxHeight: '250px' }} alt="" />
         </div>
