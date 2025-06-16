@@ -27,6 +27,6 @@ const FailedTransaction = () => {
 
     </div>
     );
-}
- 
+};
+
 export default FailedTransaction;

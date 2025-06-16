@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import reducer, { initialState } from "./Reducer";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const CartContext = createContext(initialState);
@@ -22,7 +22,7 @@ export const CartProvider = ({ children }) => {
         
 
         if(itemIndex >= 0){ //If it exists in state
-            if(product.type && (product.type = "hoodie" || product.type == "tshirt")){
+            if(product.type && (product.type = "hoodie" || product.type === "tshirt")){
                 
                 state.products[itemIndex].quantity += Number(product.quantity);
 

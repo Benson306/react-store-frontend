@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 //import he from 'he';
 import { useEffect, useState } from "react";
 import useCart from "../../utils/CartContext";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -24,7 +24,6 @@ const Preview = () => {
     const [quantity, setQuantity] = useState(1);
 
     useEffect(()=>{
-        { 
             data.xSmall ? setSize("XS") :
         
             data.small ? setSize("SM") :
@@ -38,7 +37,6 @@ const Preview = () => {
             data.xXLarge ? setSize("2XL") :
 
             setSize(null);
-        }
     }, [data])
 
     const handleAddToCart = ()=>{
@@ -60,7 +58,7 @@ const Preview = () => {
            
            <form>
 
-                { data.type == "hoodie" || data.type == "tshirt" ? 
+                { data.type === "hoodie" || data.type === "tshirt" ? 
                 <div>
                     <div className="text-gray-500 pb-4 lg:pb-10">Ksh {data.price}</div>
                     <hr />
